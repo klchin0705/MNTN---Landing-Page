@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    li {
+      list-style: none;
+    }
+
+    .sidebar {
+      position: fixed;
+      top: 50%;
+      right: 8%;
+      background-color: rgb(204, 204, 204);
+      transform: translateY(-50%);
+    }
+
+
+    .sidebar ul li {
+      padding: 16px 26px;
+      border-right: 4px solid rgb(255, 255, 255);
+    }
+
+    .sidebar .navigation {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 50px;
+      width: 4px;
+      background-color: purple;
+      transition: top .4s;
+    }
+
+    .box {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 200px;
+
+    }
+
+    .box .item {
+      border: 1px solid red;
+      width: 1000px;
+      height: 600px;
+      background-color: pink;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="sidebar">
+    <ul>
+      <li>No. 1</li>
+      <li>No. 2</li>
+      <li>No. 3</li>
+      <li>No. 4</li>
+      <li>No. 5</li>
+    </ul>
+    <span class="navigation"></span>
+  </div>
+  <div class="box">
+    <div id="item_1" class="item">1111</div>
+    <div id="item_2" class="item">2222</div>
+    <div id="item_3" class="item">3333</div>
+    <div id="item_4" class="item">4444</div>
+    <div id="item_5" class="item">5555</div>
+  </div>
+
+  <script>
+    const sections = [
+      document.querySelector('#item_1'),
+      document.querySelector('#item_2'),
+      document.querySelector('#item_3'),
+      document.querySelector('#item_4'),
+      document.querySelector('#item_5')
+    ]
+
+    const nav = document.querySelector('.sidebar .navigation')
+    const items = document.querySelectorAll('.sidebar ul li')
+
+    window.addEventListener('scroll', function () {
+      console.log(sections[1].offsetTop)
+
+      let index = 0
+
+      sections.forEach((item, i) => {
+        if (window.scrollY >= item.offsetTop - 200) {
+          index = i
+        }
+      })
+
+      nav.style.top = `${items[index].offsetTop}px`
+    })
+  </script>
+</body>
+
+</html>
