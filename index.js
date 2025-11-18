@@ -40,7 +40,7 @@ const deb = debounce(indicator, 1)
 window.onscroll = deb
 
 function indicator() {
-  console.log('hi')
+  // console.log('hi')
   
     let index = 0
 
